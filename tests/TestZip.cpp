@@ -2,15 +2,20 @@
 #include <boost/interprocess/streams/vectorstream.hpp>
 #endif
 
+#ifdef _MSC_VER
+#  include "gmock/gmock.h"
+#  include "gtest/gtest.h"
+#else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #  include "gmock/gmock.h"
 #  include "gtest/gtest.h"
 # pragma GCC diagnostic pop
+#endif // _MSC_VER
 
 #include <fstream>
 #include <chrono>
-#include "..\src\utils\Path.hpp"
+#include "../src/utils/Path.hpp"
 
 #define protected public
 #define private public

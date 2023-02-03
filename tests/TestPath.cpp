@@ -1,12 +1,19 @@
+#ifdef _MSC_VER
+#  include "gmock/gmock.h"
+#  include "gtest/gtest.h"
+#else
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #  include "gmock/gmock.h"
 #  include "gtest/gtest.h"
 # pragma GCC diagnostic pop
+#endif // _MSC_VER
 
-#include "utils/Path.hpp"
+#include "../src/utils/Path.hpp"
 
 using namespace zipper;
+
+#define PWD "F:/VS_Project/C++/zipper/tests"
 
 TEST(TestDir, exist)
 {

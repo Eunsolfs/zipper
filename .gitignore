@@ -8,6 +8,7 @@
 *.lo
 *.o
 *.obj
+*.pdb
 
 # Precompiled Headers
 *.gch
@@ -49,3 +50,12 @@ doc/demos/*/VERSION*
 .git/*
 .vscode/*
 .github/*
+tmp/*
+Release/*
+release/*
+Debug/*
+debug/*
+bin/*
+lib/*
+
+/tests/tmp

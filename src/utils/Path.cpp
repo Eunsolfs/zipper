@@ -19,6 +19,8 @@
 // All rights reserved.
 // -----------------------------------------------------------------------------
 
+#pragma   warning(disable:4996)
+
 #include "../utils/OS.hpp"
 #include "../utils/Path.hpp"
 #include <fstream>
@@ -28,7 +30,6 @@
 
 #if defined(_WIN32)
 #  include "../utils/dirent.h"
-#  include "../utils/dirent.c"
 #else
 #  include <sys/types.h>
 #  include <dirent.h>
