@@ -6,8 +6,9 @@
 //-----------------------------------------------------------------------------
 
 #include "Zipper/Zipper.hpp"
-#include "external/minizip/zip.h"
-#include "external/minizip/ioapi_mem.h"
+#include "../external/minizip/zip.h"
+#include "../external/minizip/ioapi_mem.h"
+#include "../external/minizip/iowin32.h"
 #include "utils/Path.hpp"
 #include "utils/Timestamp.hpp"
 
@@ -22,7 +23,7 @@ namespace zipper {
 
 enum class zipper_error
 {
-    NO_ERROR = 0,
+    NO_ERROR_ = 0,
     OPENING_ERROR,
     INTERNAL_ERROR,
     NO_ENTRY,
@@ -48,7 +49,7 @@ struct ZipperErrorCategory : std::error_category
 
         switch (static_cast<zipper_error>(ev))
         {
-        case zipper_error::NO_ERROR:
+        case zipper_error::NO_ERROR_:
             return "There was no error";
         case zipper_error::OPENING_ERROR:
             return "Opening error";
@@ -139,7 +140,7 @@ struct Zipper::Impl
     // -------------------------------------------------------------------------
     bool initFile(const std::string& filename, Zipper::openFlags flags)
     {
-#if defined(USE_WINDOWS)
+#if defined(_WIN32)
         zlib_filefunc64_def ffunc = { 0 };
 #endif
 
@@ -169,7 +170,7 @@ struct Zipper::Impl
             mode = APPEND_STATUS_CREATE;
         }
 
-#if defined(USE_WINDOWS)
+#if defined(_WIN32)
         fill_win32_filefunc64A(&ffunc);
         m_zf = zipOpen2_64(filename.c_str(), mode, nullptr, &ffunc);
 #else

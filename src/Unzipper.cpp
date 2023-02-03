@@ -6,9 +6,10 @@
 //-----------------------------------------------------------------------------
 
 #include "Zipper/Unzipper.hpp"
-#include "external/minizip/zip.h"
-#include "external/minizip/unzip.h"
-#include "external/minizip/ioapi_mem.h"
+#include "../external/minizip/zip.h"
+#include "../external/minizip/unzip.h"
+#include "../external/minizip/ioapi_mem.h"
+#include "../external/minizip/iowin32.h"
 #include "utils/Path.hpp"
 
 #include <functional>
@@ -16,7 +17,6 @@
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
-#include <utime.h>
 
 #ifndef ZIPPER_WRITE_BUFFER_SIZE
 #  define ZIPPER_WRITE_BUFFER_SIZE (8192u)
@@ -26,7 +26,7 @@ namespace zipper {
 
 enum class unzipper_error
 {
-    NO_ERROR = 0,
+    NO_ERROR_ = 0,
     //! Error when accessing to a info entry
     NO_ENTRY,
     //! Error inside libraries
@@ -55,7 +55,7 @@ struct UnzipperErrorCategory : std::error_category
 
         switch (static_cast<unzipper_error>(ev))
         {
-        case unzipper_error::NO_ERROR:
+        case unzipper_error::NO_ERROR_:
             return "There was no error";
         case unzipper_error::NO_ENTRY:
             return "Error, couldn't get the current entry info";
@@ -298,7 +298,7 @@ public:
     // -------------------------------------------------------------------------
     void changeFileDate(std::string const& filename, uLong dosdate, tm_unz tmu_date)
     {
-#if defined(USE_WINDOWS)
+#if defined(_WIN32)
         (void) tmu_date;
         HANDLE hFile;
         FILETIME ftm, ftLocal, ftCreate, ftLastAcc, ftLastWrite;
@@ -313,7 +313,7 @@ public:
             SetFileTime(hFile, &ftm, &ftLastAcc, &ftm);
             CloseHandle(hFile);
         }
-#else // !USE_WINDOWS
+#else // !_WIN32
         (void) dosdate;
         struct utimbuf ut;
         struct tm newdate;
@@ -331,7 +331,7 @@ public:
 
         ut.actime = ut.modtime = mktime(&newdate);
         utime(filename.c_str(), &ut);
-#endif // USE_WINDOWS
+#endif // _WIN32
     }
 
     // -------------------------------------------------------------------------
@@ -554,7 +554,7 @@ public:
             return false;
         }
 
-#if defined(USE_WINDOWS)
+#if defined(_WIN32)
         zlib_filefunc64_def ffunc;
         fill_win32_filefunc64A(&ffunc);
         m_zf = unzOpen2_64(filename.c_str(), &ffunc);

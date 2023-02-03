@@ -18,7 +18,7 @@ extern "C"
 #  include <fcntl.h>
 #  include <sys/stat.h>
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    define DIRECTORY_SEPARATOR "\\"
 #    define DIRECTORY_SEPARATOR_CHAR '\\'
 #  else
@@ -26,7 +26,7 @@ extern "C"
 #    define DIRECTORY_SEPARATOR_CHAR '/'
 #  endif
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    include <direct.h>
 #    include <io.h>
     typedef struct _stat STAT;
@@ -46,15 +46,15 @@ typedef struct stat STAT;
     //#  define CASESENSITIVITY (0)
     //#  define MAXFILENAME (256)
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    define USEWIN32IOAPI
-#    include "ioapi.h"
-#    include "iowin32.h"
+#    include "..\..\external\minizip\ioapi.h"
+#    include "..\..\external\minizip\iowin32.h"
 #  endif
 
 } // extern C
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    include <filesystem>
 #  endif
 
@@ -73,7 +73,7 @@ typedef struct stat STAT;
 #    endif
 #  endif
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    define MKDIR(d) _mkdir(d)
 #    define CHDIR(d) _chdir(d)
 #  else

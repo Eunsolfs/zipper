@@ -5,10 +5,12 @@
 // MIT License. Copyright (c) 2015 -- 2022 Sebastian <devsebas@gmail.com>
 //-----------------------------------------------------------------------------
 
+#define WIN32_LEAN_AND_MEAN
+
 #ifndef TIMESTAMP_HPP
 #  define TIMESTAMP_HPP
 
-#  if defined(USE_WINDOWS)
+#  if defined(_WIN32)
 #    include <Windows.h>
 #  elif __linux__
 #    include <sys/stat.h>

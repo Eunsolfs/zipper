@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="zipper-RootDirs">
+    <zipper-xxhash-Root>..\</zipper-xxhash-Root>
+  </PropertyGroup>
+  <PropertyGroup Label="zipperVariables">
+    <zipperPackageName></zipperPackageName>
+    <zipperPackageVersion></zipperPackageVersion>
+    <zipperCompilerFlags></zipperCompilerFlags>
+    <zipperLinkerFlags></zipperLinkerFlags>
+    <zipperPreprocessorDefinitions></zipperPreprocessorDefinitions>
+    <zipperIncludeDirectories>..\include;</zipperIncludeDirectories>
+    <zipperResourceDirectories></zipperResourceDirectories>
+    <zipperLibraryDirectories>..\lib\x64;</zipperLibraryDirectories>
+    <zipperBinaryDirectories></zipperBinaryDirectories>
+    <zipperLibraries>zipper.lib;</zipperLibraries>
+    <zipperSystemDeps></zipperSystemDeps>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LocalDebuggerEnvironment>PATH=%PATH%;</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(zipperIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(zipperPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(zipperCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(zipperLibraryDirectories)%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(zipperLibraries)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(zipperSystemDeps)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>$(zipperLinkerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <Midl>
+      <AdditionalIncludeDirectories>$(zipperIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(zipperIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(zipperPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(zipperCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

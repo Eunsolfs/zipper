@@ -8,7 +8,7 @@
 #include "Timestamp.hpp"
 #include <ctime>
 #include <chrono>
-#if !defined(USE_WINDOWS)
+#if !defined(_WIN32)
 #  include <sys/stat.h>
 #endif
 
@@ -28,7 +28,7 @@ Timestamp::Timestamp(const std::string& filepath)
     std::time_t now = std::time(nullptr);
     timestamp = *std::localtime(&now);
 
-#if defined(USE_WINDOWS)
+#if defined(_WIN32)
 
     // Implementation based on Ian Boyd's
     // https://stackoverflow.com/questions/20370920/convert-current-time-from-windows-to-unix-timestamp-in-c-or-c
@@ -62,7 +62,7 @@ Timestamp::Timestamp(const std::string& filepath)
     timestamp = *std::localtime(&time_s);
     CloseHandle(hFile1);
 
-#else // !USE_WINDOWS
+#else // !_WIN32
 
     struct stat buf;
     if (stat(filepath.c_str(), &buf) != 0)
@@ -78,5 +78,5 @@ Timestamp::Timestamp(const std::string& filepath)
 
     timestamp = *std::localtime(&timet);
 
-#endif // USE_WINDOWS
+#endif // _WIN32
 }
