@@ -31,6 +31,24 @@
 #ifndef ZLIB_H
 #define ZLIB_H
 
+#ifndef _LIBPATH__
+#define _LIBPATH__(p,f)   p##f
+#endif
+
+#ifdef _WIN64
+#	ifdef _DEBUG
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x64_mt_debug.lib"))
+#	else
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x64_mt_release.lib"))
+#	endif
+#else
+#	ifdef _DEBUG
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x86_mt_debug.lib"))
+#	else
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x86_mt_release.lib"))
+#	endif
+#endif
+
 #include "zconf.h"
 
 #ifdef __cplusplus
