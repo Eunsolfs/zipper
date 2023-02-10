@@ -37,15 +37,15 @@
 
 #ifdef _WIN64
 #	ifdef _DEBUG
-#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x64_mt_debug.lib"))
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../../lib/zlib_x64_mt_debug.lib"))
 #	else
-#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x64_mt_release.lib"))
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../../lib/zlib_x64_mt_release.lib"))
 #	endif
 #else
 #	ifdef _DEBUG
-#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x86_mt_debug.lib"))
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../../lib/zlib_x86_mt_debug.lib"))
 #	else
-#		pragma comment(lib, _LIBPATH__(__FILE__, "/../lib/zlib_x86_mt_release.lib"))
+#		pragma comment(lib, _LIBPATH__(__FILE__, "/../../lib/zlib_x86_mt_release.lib"))
 #	endif
 #endif
 
