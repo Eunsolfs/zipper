@@ -31,6 +31,8 @@
 #ifndef ZLIB_H
 #define ZLIB_H
 
+#pragma warning( disable : 5103 )
+
 #ifndef _LIBPATH__
 #define _LIBPATH__(p,f)   p##f
 #endif
