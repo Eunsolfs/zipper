@@ -4,6 +4,15 @@
 
 [Zipper](https://github.com/lecrapouille/zipper) is a C++11 wrapper around minizip compression library. Its goal is to bring the power and simplicity of minizip to a more object-oriented/c++ user-friendly library.
 
+## 说明
+**本库添加了VS工程文件，第三方库也在目录中，目前这个库可以直接成功编译
+如果你使用的是VS 那么你可用通过添加文件夹【vs_props】中的项目属性表（.props文件）的方式来直接使用这个库，而不需要再去手动设置本库的引用目录以及lib目录
+VS->视图->其他窗口->属性管理器->鼠标右键->添加**
+
+**VS project files have been added to this library, and third-party libraries are also in the directory, so this library can be compiled directly.
+If you are using VS, then you can use this library directly by adding the project property sheet (.props file) in the folder [vs_props], instead of manually setting up the reference directory and lib directory for this library.
+VS->View->Other Windows->Property Manager->Right Mouse Click->Add**
+
 This project is the continuation of the original [project](https://github.com/sebastiandev/zipper/tree/v2.x.y). The original project was born out of the necessity of a compression library that would be reliable, simple, and flexible. By flexibility I mean supporting all kinds of inputs and outputs, but specifically being able to compress into memory instead of being restricted to file compression only, and using data from memory instead of just files as well.
 
 This current fork repo has been made because the original project was no longer maintained by the original authors and I, Lecrapouille, have some issues due to missing administration rights (needed for CI, branch management ...).
